@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Nephroureterectomy Data Sheet</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      background-image: url("background.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333;
+      flex-direction: row;
+      padding-left: 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #14568c;
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-weight: bolder;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      max-width: 550px;
+      margin-left: 120px;
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+
+    .btn {
+      margin: 10px;
+      padding: 12px 50px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #14568c;
+      border: none;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #1e88e5;
+    }
+
+    .btn-success {
+      background-color: #14568c;
+      border: none;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background-color: #1e88e5;
+    }
+
+    .mt-4 a {
+      margin-right: 15px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .container {
+        padding: 30px;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container text-center">
+    <h1>Nephroureterectomy Data Sheet</h1>
+    <p class="lead">Welcome to the Nephroureterectomy Data Management System.</p>
+    <div class="mt-4">
+      <a href="/pages/login.html" class="btn btn-primary">Login</a>
+      <a href="/pages/register.html" class="btn btn-success">Register</a>
+    </div>
+  </div>
+</body>
+</html>

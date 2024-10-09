@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Patient Data Form</title>
+    <style>
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+        }
+
+        select.form-control {
+            border: 1px solid #ced4da;
+        }
+
+        .btn {
+            border: 1px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Patient Data Form</h2>
+        <form id="patientDataForm" onsubmit="submitPatientData(event)">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td><label for="name">Name</label></td>
+                        <td><input type="text" id="name" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="year">Year</label></td>
+                        <td><input type="number" id="year" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="uhid">UHID</label></td>
+                        <td><input type="text" id="uhid" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ipNo">IP No</label></td>
+                        <td><input type="text" id="ipNo" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="telNo">Tel No</label></td>
+                        <td><input type="text" id="telNo" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="location">Location</label></td>
+                        <td><input type="text" id="location" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="age">Age</label></td>
+                        <td><input type="number" id="age" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="sex">Sex</label></td>
+                        <td>
+                            <select id="sex" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                                <option value="O">Other</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="ht">HT (cm)</label></td>
+                        <td><input type="number" step="0.1" id="ht" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="wt">WT (kg)</label></td>
+                        <td><input type="number" step="0.1" id="wt" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="bmi">BMI</label></td>
+                        <td><input type="number" step="0.1" id="bmi" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="smoking">Smoking</label></td>
+                        <td>
+                            <select id="smoking" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="alcohol">Alcohol</label></td>
+                        <td>
+                            <select id="alcohol" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="comorbidities">Comorbidities</label></td>
+                        <td>
+                            <select id="comorbidities" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="diagnosis">Diagnosis</label></td>
+                        <td>
+                            <select id="diagnosis" class="form-control" required>
+                                <option value="1">Incidental</option>
+                                <option value="2">Symptomatic</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="presentingSymptoms">Presenting Symptoms</label></td>
+                        <td><input type="text" id="presentingSymptoms" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="hematuria">Hematuria</label></td>
+                        <td>
+                            <select id="hematuria" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="luts">LUTS</label></td>
+                        <td>
+                            <select id="luts" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="prevTreatment">Prev Treatment</label></td>
+                        <td>
+                            <select id="prevTreatment" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="cytology">Cytology</label></td>
+                        <td>
+                            <select id="cytology" class="form-control" required>
+                                <option value="1">HG</option>
+                                <option value="2">LG</option>
+                                <option value="3">NA</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="cect">CECT</label></td>
+                        <td>
+                            <select id="cect" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="mri">MRI</label></td>
+                        <td>
+                            <select id="mri" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="pet">PET</label></td>
+                        <td>
+                            <select id="pet" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="bladderCuff">Bladder Cuff</label></td>
+                        <td>
+                            <select id="bladderCuff" class="form-control" required>
+                                <option value="1">Open</option>
+                                <option value="2">Lap</option>
+                                <option value="3">Robotic</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="tumorSize">Tumor Size (in cm)</label></td>
+                        <td><input type="number" step="0.1" id="tumorSize" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tumorLocation">Tumor Location</label></td>
+                        <td>
+                            <select id="tumorLocation" class="form-control" required>
+                                <option value="1">Right</option>
+                                <option value="2">Left</option>
+                                <option value="3">Bilateral</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="preOpBiopsy">Pre-op Biopsy</label></td>
+                        <td>
+                            <select id="preOpBiopsy" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Y</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="preOpCr">Pre-op Cr</label></td>
+                        <td><input type="number" step="0.1" id="preOpCr" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="preOpEGFR">Pre-op e-GFR</label></td>
+                        <td><input type="number" step="0.1" id="preOpEGFR" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lowerTractStatus">Lower Tract Status</label></td>
+                        <td>
+                            <select id="lowerTractStatus" class="form-control" required>
+                                <option value="1">N</option>
+                                <option value="2">Tumour</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td><label for="asa">ASA</label></td>
+                      <td>
+                          <select id="asa" class="form-control" required>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="bladderTumour">Bladder Tumour</label></td>
+                      <td>
+                          <select id="bladderTumour" class="form-control" required>
+                              <option value="1">NMIBC</option>
+                              <option value="2">MIBC</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="neoAdjuvantTherapy">Neo Adjuvant Therapy Chemo</label></td>
+                      <td>
+                          <select id="neoAdjuvantTherapy" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="chemoRegimen">Chemotherapy Regimen</label></td>
+                      <td>
+                          <select id="chemoRegimen" class="form-control" required>
+                              <option value="1">GemCis</option>
+                              <option value="2">GemCar</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="noOfNacCycles">No of NAC Cycles</label></td>
+                      <td><input type="number" id="noOfNacCycles" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="approach">Approach</label></td>
+                      <td>
+                          <select id="approach" class="form-control" required>
+                              <option value="1">Open</option>
+                              <option value="2">Lap</option>
+                              <option value="3">RA</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="procedurePerformed">Procedure Performed</label></td>
+                      <td><input type="text" id="procedurePerformed" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="dop">DoP</label></td>
+                      <td><input type="date" id="dop" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="opTime">Op Time (in mins)</label></td>
+                      <td><input type="number" id="opTime" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="postOpMitomycin">Post Op Mitomycin</label></td>
+                      <td>
+                          <select id="postOpMitomycin" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="los">LOS</label></td>
+                      <td><input type="number" id="los" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="bloodLoss">Blood Loss (in ml)</label></td>
+                      <td><input type="number" id="bloodLoss" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="intraopComp">Intraop Complications</label></td>
+                      <td>
+                          <select id="intraopComp" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="bloodTransfusion">Blood Transfusion</label></td>
+                      <td>
+                          <select id="bloodTransfusion" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="normDiet">Norm Diet (POD)</label></td>
+                      <td><input type="number" id="normDiet" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="ambulation">Ambulation (POD)</label></td>
+                      <td><input type="number" id="ambulation" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="fitForDisch">Fit for Discharge (POD)</label></td>
+                      <td><input type="number" id="fitForDisch" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="postOpComp">Post Op Complications</label></td>
+                      <td>
+                          <select id="postOpComp" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="postOpCr">Post Op Cr</label></td>
+                      <td><input type="number" step="0.1" id="postOpCr" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="hpr">HPR</label></td>
+                      <td><input type="text" id="hpr" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="stage">Stage</label></td>
+                      <td><input type="text" id="stage" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="adjuvantChemo">Adjuvant Chemo</label></td>
+                      <td>
+                          <select id="adjuvantChemo" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="noOfAdjChemoCycles">No of Adjuvant Chemo Cycles</label></td>
+                      <td><input type="number" id="noOfAdjChemoCycles" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="chemoRegimenAdj">Adjuvant Chemo Regimen</label></td>
+                      <td>
+                          <select id="chemoRegimenAdj" class="form-control" required>
+                              <option value="1">GemCis</option>
+                              <option value="2">GemCar</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="followupCysto">Followup Cysto</label></td>
+                      <td>
+                          <select id="followupCysto" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="cystoscopyFindings">Cystoscopy Findings</label></td>
+                      <td>
+                          <select id="cystoscopyFindings" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Tumour</option>
+                          </select>
+                      </td>
+                  </tr>
+
+                  <!-- Fields for follow-up results -->
+                  <tr>
+                      <td><label for="threeMonthCreatinine">3 Month Creatinine</label></td>
+                      <td><input type="number" step="0.1" id="threeMonthCreatinine" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="threeMonthEgfr">3 Month e-GFR</label></td>
+                      <td><input type="number" step="0.1" id="threeMonthEgfr" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="threeMonthCt">3 Month CT</label></td>
+                      <td><input type="text" id="threeMonthCt" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="sixMonthCreatinine">6 Month Creatinine</label></td>
+                      <td><input type="number" step="0.1" id="sixMonthCreatinine" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="sixMonthEgfr">6 Month e-GFR</label></td>
+                      <td><input type="number" step="0.1" id="sixMonthEgfr" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="sixMonthCt">6 Month CT</label></td>
+                      <td><input type="text" id="sixMonthCt" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="twelveMonthCreatinine">12 Month Creatinine</label></td>
+                      <td><input type="number" step="0.1" id="twelveMonthCreatinine" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="twelveMonthEgfr">12 Month e-GFR</label></td>
+                      <td><input type="number" step="0.1" id="twelveMonthEgfr" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="twelveMonthCt">12 Month CT</label></td>
+                      <td><input type="text" id="twelveMonthCt" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="twentyFourMonthCreatinine">24 Month Creatinine</label></td>
+                      <td><input type="number" step="0.1" id="twentyFourMonthCreatinine" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="twentyFourMonthEgfr">24 Month e-GFR</label></td>
+                      <td><input type="number" step="0.1" id="twentyFourMonthEgfr" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="twentyFourMonthCt">24 Month CT</label></td>
+                      <td><input type="text" id="twentyFourMonthCt" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="thirtySixMonthCreatinine">36 Month Creatinine</label></td>
+                      <td><input type="number" step="0.1" id="thirtySixMonthCreatinine" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="thirtySixMonthEgfr">36 Month e-GFR</label></td>
+                      <td><input type="number" step="0.1" id="thirtySixMonthEgfr" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="thirtySixMonthCt">36 Month CT</label></td>
+                      <td><input type="text" id="thirtySixMonthCt" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="dateOfLastFollowUp">Date of Last Follow-Up</label></td>
+                      <td><input type="date" id="dateOfLastFollowUp" class="form-control" required></td>
+                  </tr>
+                  <tr>
+                      <td><label for="recurrence">Recurrence</label></td>
+                      <td>
+                          <select id="recurrence" class="form-control" required>
+                              <option value="1">N</option>
+                              <option value="2">Y</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label for="comments">Comments</label></td>
+                      <td><textarea id="comments" class="form-control" rows="3"></textarea></td>
+                  </tr>
+              </tbody>
+          </table>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script> 
+</body>
+</html>
