@@ -9,24 +9,34 @@
 <body>
   <div class="container">
     <h2 class="mt-5">Admin Dashboard</h2>
-    <input type="text" id="uhidSearch" placeholder="Search by UHID" class="form-control" oninput="searchPatients(this.value)">
+    
+    <input type="text" id="uhidSearch" placeholder="Search by UHID" class="form-control" oninput="searchPatientByUHID(this.value)">
     <table class="table mt-4">
       <thead>
         <tr>
           <th>UHID</th>
           <th>Name</th>
-          <!-- Other columns for patient data -->
+          <th>Year</th>
+          <th>Age</th>
+          <th>Sex</th>
+          <th>Diagnosis</th>
+          <th>Tumor Size (cm)</th>
+          <th>Procedure Performed</th>
         </tr>
       </thead>
       <tbody id="patientData">
-        <!-- Data from the database will be rendered here -->
+        
       </tbody>
     </table>
+
+    <button class="btn btn-primary" onclick="downloadExcel()">Download Excel Report</button>
+
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.6/xlsx.full.min.js"></script> <!-- SheetJS -->
   <script src="main.js"></script>
 </body>
 </html>

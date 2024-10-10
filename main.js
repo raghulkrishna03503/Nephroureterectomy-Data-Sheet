@@ -61,6 +61,7 @@ function submitPatientData(event) {
     lowerTractStatus: document.getElementById("lowerTractStatus").value,
     asa: document.getElementById("asa").value,
     bladderTumour: document.getElementById("bladderTumour").value,
+    neoAdjuvantTherapy: document.getElementById("neoAdjuvantTherapy").value,
     chemotherapyRegimen: document.getElementById("chemoRegimen").value,
     noOfNacCycles: document.getElementById("noOfNacCycles").value,
     approach: document.getElementById("approach").value,
@@ -169,4 +170,170 @@ function searchPatients(searchValue) {
       console.error("Error fetching data:", error);
     });
 }
+
+
+function loadPatientData() {
+  const userId = auth.currentUser.uid;
   
+  db.collection("patients").doc(userId).get()
+    .then((doc) => {
+      if (doc.exists) {
+        const patientData = doc.data();
+
+        // Set placeholders if data exists
+        document.getElementById("name").value = patientData.name || "";
+        document.getElementById("year").value = patientData.year || "";
+        document.getElementById("uhid").value = patientData.uhid || "";
+        document.getElementById("ipNo").value = patientData.ipNo || "";
+        document.getElementById("telNo").value = patientData.telNo || "";
+        document.getElementById("location").value = patientData.location || "";
+        document.getElementById("age").value = patientData.age || "";
+        document.getElementById("sex").value = patientData.sex || "";
+        document.getElementById("ht").value = patientData.ht || "";
+        document.getElementById("wt").value = patientData.wt || "";
+        document.getElementById("bmi").value = patientData.bmi || "";
+        document.getElementById("smoking").value = patientData.smoking || "";
+        document.getElementById("alcohol").value = patientData.alcohol || "";
+        document.getElementById("comorbidities").value = patientData.comorbidities || "";
+        document.getElementById("diagnosis").value = patientData.diagnosis || "";
+        document.getElementById("presentingSymptoms").value = patientData.presentingSymptoms || "";
+        document.getElementById("hematuria").value = patientData.hematuria || "";
+        document.getElementById("luts").value = patientData.luts || "";
+        document.getElementById("prevTreatment").value = patientData.prevTreatment || "";
+        document.getElementById("cytology").value = patientData.cytology || "";
+        document.getElementById("cect").value = patientData.cect || "";
+        document.getElementById("mri").value = patientData.mri || "";
+        document.getElementById("pet").value = patientData.pet || "";
+        document.getElementById("bladderCuff").value = patientData.bladderCuff || "";
+        document.getElementById("tumorSize").value = patientData.tumorSize || "";
+        document.getElementById("tumorLocation").value = patientData.tumorLocation || "";
+        document.getElementById("preOpBiopsy").value = patientData.preOpBiopsy || "";
+        document.getElementById("preOpCr").value = patientData.preOpCr || "";
+        document.getElementById("preOpEGFR").value = patientData.preOpEgfr || "";
+        document.getElementById("lowerTractStatus").value = patientData.lowerTractStatus || "";
+        document.getElementById("asa").value = patientData.asa || "";
+        document.getElementById("bladderTumour").value = patientData.bladderTumour || "";
+        document.getElementById("neoAdjuvantTherapy").value = patientData.neoAdjuvantTherapy || "";
+        document.getElementById("chemoRegimen").value = patientData.chemotherapyRegimen || "";
+        document.getElementById("noOfNacCycles").value = patientData.noOfNacCycles || "";
+        document.getElementById("approach").value = patientData.approach || "";
+        document.getElementById("procedurePerformed").value = patientData.procedurePerformed || "";
+        document.getElementById("dop").value = patientData.doP || "";
+        document.getElementById("opTime").value = patientData.opTime || "";
+        document.getElementById("postOpMitomycin").value = patientData.postOpMitomycin || "";
+        document.getElementById("los").value = patientData.los || "";
+        document.getElementById("bloodLoss").value = patientData.bloodLoss || "";
+        document.getElementById("intraopComp").value = patientData.intraopComp || "";
+        document.getElementById("bloodTransfusion").value = patientData.bloodTransfusion || "";
+        document.getElementById("normDiet").value = patientData.normDiet || "";
+        document.getElementById("ambulation").value = patientData.ambulation || "";
+        document.getElementById("fitForDisch").value = patientData.fitForDisch || "";
+        document.getElementById("postOpComp").value = patientData.postOpComp || "";
+        document.getElementById("postOpCr").value = patientData.postOpCr || "";
+        document.getElementById("hpr").value = patientData.hpr || "";
+        document.getElementById("stage").value = patientData.stage || "";
+        document.getElementById("adjuvantChemo").value = patientData.adjuvantChemo || "";
+        document.getElementById("noOfAdjChemoCycles").value = patientData.noOfAdjChemoCycles || "";
+        document.getElementById("followupCysto").value = patientData.followupCysto || "";
+        document.getElementById("cystoscopyFindings").value = patientData.cystoscopyFindings || "";
+        document.getElementById("threeMonthCreatinine").value = patientData.threeMonthCreatinine || "";
+        document.getElementById("threeMonthEgfr").value = patientData.threeMonthEgfr || "";
+        document.getElementById("threeMonthCt").value = patientData.threeMonthCt || "";
+        document.getElementById("sixMonthCreatinine").value = patientData.sixMonthCreatinine || "";
+        document.getElementById("sixMonthEgfr").value = patientData.sixMonthEgfr || "";
+        document.getElementById("sixMonthCt").value = patientData.sixMonthCt || "";
+        document.getElementById("twelveMonthCreatinine").value = patientData.twelveMonthCreatinine || "";
+        document.getElementById("twelveMonthEgfr").value = patientData.twelveMonthEgfr || "";
+        document.getElementById("twelveMonthCt").value = patientData.twelveMonthCt || "";
+        document.getElementById("twentyFourMonthCreatinine").value = patientData.twentyFourMonthCreatinine || "";
+        document.getElementById("twentyFourMonthEgfr").value = patientData.twentyFourMonthEgfr || "";
+        document.getElementById("twentyFourMonthCt").value = patientData.twentyFourMonthCt || "";
+        document.getElementById("thirtySixMonthCreatinine").value = patientData.thirtySixMonthCreatinine || "";
+        document.getElementById("thirtySixMonthEgfr").value = patientData.thirtySixMonthEgfr || "";
+        document.getElementById("thirtySixMonthCt").value = patientData.thirtySixMonthCt || "";
+        document.getElementById("dateOfLastFollowUp").value = patientData.dateOfLastFollowUp || "";
+        document.getElementById("recurrence").value = patientData.recurrence || "";
+        document.getElementById("comments").value = patientData.comments || "";
+
+      } else {
+        console.log("No patient data found.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching patient data:", error);
+    });
+}
+
+function searchPatientByUHID(uhid) {
+  if (!uhid) {
+    document.getElementById("patientData").innerHTML = "";
+    return;
+  }
+
+  db.collection("patients").where("uhid", "==", uhid).get()
+    .then((querySnapshot) => {
+      const tbody = document.getElementById("patientData");
+      tbody.innerHTML = "";
+
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          const patient = doc.data();
+
+          const row = `<tr>
+            <td>${patient.uhid || ""}</td>
+            <td>${patient.name || ""}</td>
+            <td>${patient.year || ""}</td>
+            <td>${patient.age || ""}</td>
+            <td>${patient.sex || ""}</td>
+            <td>${patient.diagnosis || ""}</td>
+            <td>${patient.tumorSize || ""}</td>
+            <td>${patient.procedurePerformed || ""}</td>
+            <!-- Add more fields here as needed -->
+          </tr>`;
+
+          tbody.innerHTML += row;
+        });
+      } else {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center">No patient found with the given UHID</td></tr>`;
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching patient data: ", error);
+    });
+}
+
+function downloadExcel() {
+  db.collection("patients").get()
+    .then((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        const patient = doc.data();
+        const patientData = {
+          UHID: patient.uhid || "",
+          Name: patient.name || "",
+          Year: patient.year || "",
+          Age: patient.age || "",
+          Sex: patient.sex || "",
+          Diagnosis: patient.diagnosis || "",
+          "Tumor Size (cm)": patient.tumorSize || "",
+          "Procedure Performed": patient.procedurePerformed || "",
+        };
+        data.push(patientData);
+      });
+      const ws = XLSX.utils.json_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Patients Data");
+      XLSX.writeFile(wb, "Patients_Report.xlsx");
+    })
+    .catch((error) => {
+      console.error("Error fetching patient data for Excel download: ", error);
+    });
+}
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    loadPatientData();
+  } else {
+    window.location.href = "login.html";
+  }
+});
