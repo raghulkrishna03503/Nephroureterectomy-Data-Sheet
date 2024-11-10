@@ -74,6 +74,44 @@ function loginUser(event) {
 
 function submitPatientData(event) {
   event.preventDefault();
+  const isUmol = document.getElementById("serumCreatinineUnitMOL").checked;
+  const assay1 = document.getElementById("stdAssaysOption1").checked;
+  const assay2 = document.getElementById("stdAssaysOption2").checked;
+  const assay3 = document.getElementById("stdAssaysOption3").checked;
+  const adj1 = document.getElementById("adjBodySurfOption1").checked;
+  const adj2 = document.getElementById("adjBodySurfOption2").checked;
+  const adj3 = document.getElementById("adjBodySurfOption3").checked;
+  let unit, assay, adjVol;
+  if (isUmol){
+    unit = "μmol/L";
+  }
+  else{
+    unit = "mg/dL";
+  }
+  if (assay1){
+    assay = "Yes";
+  }
+
+  else if (assay2){
+    assay = "No";
+  }
+
+  else if (assay3){
+    assay = "Not Sure";
+  }
+
+  if (adj1){
+    adjVol = "Yes";
+  }
+
+  else if (adj2){
+    adjVol = "No";
+  }
+
+  else if (adj3){
+    adjVol = "No";
+  }
+
   const patientData = {
     name: document.getElementById("name").value,
     year: document.getElementById("year").value,
@@ -147,7 +185,15 @@ function submitPatientData(event) {
     thirtySixMonthCt: document.getElementById("thirtySixMonthCt").value,
     dateOfLastFollowUp: document.getElementById("dateOfLastFollowUp").value,
     recurrence: document.getElementById("recurrence").value,
-    comments: document.getElementById("comments").value
+    comments: document.getElementById("comments").value,
+    serumCreatinine : document.getElementById("serumCreatinine").value,
+    serumCreatinineUnitMOL : unit,
+    serumCystatinC : document.getElementById("serumCystatinC").value,
+    stdAssaysOption : assay,
+    adjBodySurfOption : adjVol,
+    ckdepic : document.getElementById("ckdepic").value,
+    ckdepicc : document.getElementById("ckdepicc").value,
+    ckdepicC : document.getElementById("ckdepicC").value
   };
   const userId = auth.currentUser.uid;
   db.collection("patients").doc(userId).set(patientData)
@@ -226,31 +272,61 @@ function downloadExcel() {
     });
 }
 
-function calceGFR(){
-  const age = document.getElementById("age").value;
-  const sex = document.getElementById("sex").value;
-  const scr = document.getElementById("serumCreatinine").value;
-  const cys = document.getElementById("serumCystatinC").value;
+function calceGFR() {
+  let age = parseFloat(document.getElementById("age").value);
+  let sex = document.getElementById("sex").value;
+  let scr = parseFloat(document.getElementById("serumCreatinine").value);
+  let cys = parseFloat(document.getElementById("serumCystatinC").value);
+  const isUmol = document.getElementById("serumCreatinineUnitMOL").checked;
   const ckdepic = document.getElementById("ckdepic");
   const ckdepicc = document.getElementById("ckdepicc");
   const ckdepicC = document.getElementById("ckdepicC");
 
-  if (!age || !sex || !scr || !cys){
-    window.alert(
-      "Please provide all the necessary data points!"
-    );
+  if (!age || !sex || isNaN(scr) || isNaN(cys)) {
+    window.alert("Please provide all the necessary data points!");
+    return;
   }
-  else{
-    if (sex == "M"){
-      ckdepic.value = Math.round(142 * Math.pow(Math.min(scr/0.9, 1), -0.302) * Math.pow(Math.max(scr/0.9, 1), -1.200) * Math.pow(0.9938, age));
-      ckdepicc.value = Math.round(135 * Math.pow(Math.min(scr/0.9, 1), -0.144) * Math.pow(Math.max(scr/0.9, 1), -0.544) * Math.pow(Math.min(cys/0.8, 1), -0.323) * Math.pow(Math.max(cys/0.8, 1), -0.778) * Math.pow(0.9961, age));
-      ckdepicC.value = Math.round(133 * Math.pow(Math.min(cys/0.8, 1), -0.499) * Math.pow(Math.max(cys/0.8, 1), -1.328) * Math.pow(0.996, age));
-    }
-    else{
-      ckdepic.value = Math.round(142 * Math.pow(Math.min(scr/0.7, 1), -0.241) * Math.pow(Math.max(scr/0.7, 1), -1.200) * Math.pow(0.9938, age) * 1.012);
-      ckdepicc.value = Math.round(135 * Math.pow(Math.min(scr/0.7, 1), -0.219) * Math.pow(Math.max(scr/0.7, 1), -0.544) * Math.pow(Math.min(cys/0.8, 1), -0.323) * Math.pow(Math.max(cys/0.8, 1), -0.778) * Math.pow(0.9961, age) * 0.963);
-      ckdepicC.value = Math.round(133 * Math.pow(Math.min(cys/0.8, 1), -0.499) * Math.pow(Math.max(cys/0.8, 1), -1.328) * Math.pow(0.996, age) * 0.932);
-    }
+
+  if (isUmol) {
+    scr *= 0.0113;
+  }
+
+  if (sex === "M") {
+    ckdepic.value = Math.round(
+      142 * Math.pow(Math.min(scr / 0.9, 1), -0.302) *
+      Math.pow(Math.max(scr / 0.9, 1), -1.200) *
+      Math.pow(0.9938, age)
+    );
+    ckdepicc.value = Math.round(
+      135 * Math.pow(Math.min(scr / 0.9, 1), -0.144) *
+      Math.pow(Math.max(scr / 0.9, 1), -0.544) *
+      Math.pow(Math.min(cys / 0.8, 1), -0.323) *
+      Math.pow(Math.max(cys / 0.8, 1), -0.778) *
+      Math.pow(0.9961, age)
+    );
+    ckdepicC.value = Math.round(
+      133 * Math.pow(Math.min(cys / 0.8, 1), -0.499) *
+      Math.pow(Math.max(cys / 0.8, 1), -1.328) *
+      Math.pow(0.996, age)
+    );
+  } else {
+    ckdepic.value = Math.round(
+      142 * Math.pow(Math.min(scr / 0.7, 1), -0.241) *
+      Math.pow(Math.max(scr / 0.7, 1), -1.200) *
+      Math.pow(0.9938, age) * 1.012
+    );
+    ckdepicc.value = Math.round(
+      135 * Math.pow(Math.min(scr / 0.7, 1), -0.219) *
+      Math.pow(Math.max(scr / 0.7, 1), -0.544) *
+      Math.pow(Math.min(cys / 0.8, 1), -0.323) *
+      Math.pow(Math.max(cys / 0.8, 1), -0.778) *
+      Math.pow(0.9961, age) * 0.963
+    );
+    ckdepicC.value = Math.round(
+      133 * Math.pow(Math.min(cys / 0.8, 1), -0.499) *
+      Math.pow(Math.max(cys / 0.8, 1), -1.328) *
+      Math.pow(0.996, age) * 0.932
+    );
   }
 }
 
