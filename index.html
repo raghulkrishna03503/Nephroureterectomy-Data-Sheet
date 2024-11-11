@@ -1,100 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>Nephroureterectomy Data Sheet</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      height: 100vh;
-      background-image: url("background.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      color: #333;
-      flex-direction: row;
-      padding-left: 30px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #14568c;
-      font-weight: 600;
-      margin-bottom: 20px;
-      font-weight: bolder;
-    }
+        .hero-section {
+            background-color: #3b8f9a;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
 
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      padding: 40px;
-      max-width: 550px;
-      margin-left: 120px;
-      position: relative;
-      z-index: 1;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #ffffff;
-    }
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
 
-    .btn {
-      margin: 10px;
-      padding: 12px 50px;
-      font-size: 1.1rem;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
+        .hero-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
 
-    .btn-primary {
-      background-color: #14568c;
-      border: none;
-      color: white;
-    }
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-top: 20px;
+        }
 
-    .btn-primary:hover {
-      background-color: #1e88e5;
-    }
+        .cta-button {
+            background-color: #2a6f74;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
 
-    .btn-success {
-      background-color: #14568c;
-      border: none;
-      color: white;
-    }
+        .cta-button:hover {
+            background-color: #1d5f58;
+            color: white;
+            text-decoration: none;
+        }
 
-    .btn-success:hover {
-      background-color: #1e88e5;
-    }
+        .services-section {
+            padding: 50px 0;
+            background-color: #ffffff;
+        }
 
-    .mt-4 a {
-      margin-right: 15px;
-    }
+        .services-section h2 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
 
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-      }
+        .service-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background-color: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
 
-      .container {
-        padding: 30px;
-        margin-top: 20px;
-      }
-    }
-  </style>
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section h2 {
+                font-size: 2rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+
+            .services-section h2 {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Extra small devices (phones, 320px - 568px) */
+        @media (max-width: 568px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-section p {
+                font-size: 0.9rem;
+            }
+
+            .cta-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+
+            .service-card {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Tablets in portrait mode and larger mobile devices */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section h2 {
+                font-size: 2rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+
+        /* Landscape phones, smaller tablets (360px - 640px) */
+        @media (max-width: 640px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.7rem;
+            }
+
+            .hero-section p {
+                font-size: 0.95rem;
+            }
+
+            .cta-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+
+            .service-card {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Tablets and medium devices (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .hero-section h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.9rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+            }
+
+            .services-section h2 {
+                font-size: 2rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Large tablets in landscape mode (1024px - 1366px) */
+        @media (max-width: 1366px) {
+            .hero-section h1 {
+                font-size: 2.7rem;
+            }
+
+            .hero-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Additional breakpoints for specific dimensions */
+        @media (max-width: 393px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .hero-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container text-center">
-    <h1>Nephroureterectomy Data Sheet</h1>
-    <p class="lead">Welcome to the Nephroureterectomy Data Management System.</p>
-    <div class="mt-4">
-      <a href="login.html" class="btn btn-primary">Login</a>
-      <a href="register.html" class="btn btn-success">Register</a>
-    </div>
-  </div>
+    <section class="hero-section">
+        <h1>Nephroureterectomy Data Sheet</h1>
+        <h2>Welcome to Our Platform</h1>
+        <p>Providing comprehensive insights and support for <br><b style="font-weight: 550;"><i>Nephroureterectomy patient care and Data Management</i></b></p>
+        <br><a href="login.html" class="cta-button">Get Started</a>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="service-card">
+                        <h3>Service 1</h3>
+                        <p>Short description of Service 1.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="service-card">
+                        <h3>Service 2</h3>
+                        <p>Short description of Service 2.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="service-card">
+                        <h3>Service 3</h3>
+                        <p>Short description of Service 3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

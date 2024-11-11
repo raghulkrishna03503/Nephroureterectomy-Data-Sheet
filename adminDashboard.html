@@ -4,14 +4,136 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Poppins font -->
   <title>Admin Dashboard</title>
+  <style>
+    /* Apply Poppins font to the entire document */
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Container styling */
+    .container {
+      margin-top: 50px;
+      max-width: 80%;
+    }
+
+    /* Header styling with background color */
+    h2 {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #3b8f9a;
+      color: white;
+      border-radius: 5px;
+    }
+
+    /* Hero section styling */
+    .hero-section {
+      background-color: #3b8f9a;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .hero-section p {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-button {
+      background-color: #2a6f74;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-button:hover {
+      background-color: #1d5f58;
+    }
+
+    /* Table styling */
+    .table {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* Table header background color */
+    .table thead {
+      background-color: #3b8f9a;
+      color: white;
+    }
+
+    .table th, .table td {
+      text-align: center;
+      padding: 15px;
+      vertical-align: middle;
+    }
+
+    /* Button styling with background color */
+    .btn-primary {
+      display: block;
+      width: 30%;  /* Decreased button width */
+      margin: 20px auto;
+      font-size: 16px;
+      padding: 10px;
+      background-color: #3b8f9a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+      background-color: #2e6f79;
+    }
+
+    .btn-primary:active{
+      background-color: #3b8f9a;
+    }
+    .btn-primary:focus{
+      background-color: #3b8f9a;
+    }
+
+    /* Flexbox styling to place button beside the search field */
+    .search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #uhidSearch {
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
+
+  <section class="hero-section">
+    <h1>Welcome to the Admin Dashboard</h1>
+    <p>Manage patient records and download reports with ease.</p>
+  </section>
+
   <div class="container">
-    <h2 class="mt-5">Admin Dashboard</h2>
     
-    <input type="text" id="uhidSearch" placeholder="Search by UHID" class="form-control" oninput="searchPatientByUHID(this.value)">
-    <table class="table mt-4">
+    <div class="search-container">
+      <input type="text" id="uhidSearch" placeholder="Search by UHID" class="form-control" oninput="searchPatientByUHID(this.value)">
+      <button class="btn btn-primary" onclick="downloadExcel()">Download Excel Report</button>
+    </div>
+
+    <!-- Table Display -->
+    <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>UHID</th>
@@ -25,11 +147,8 @@
         </tr>
       </thead>
       <tbody id="patientData">
-        
       </tbody>
     </table>
-
-    <button class="btn btn-primary" onclick="downloadExcel()">Download Excel Report</button>
 
   </div>
 
