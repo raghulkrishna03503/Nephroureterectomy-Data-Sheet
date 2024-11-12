@@ -362,31 +362,27 @@ document.addEventListener("DOMContentLoaded", function() {
   textAreas.forEach(({ id, limit, showOnRadio }) => {
       const textArea = document.getElementById(id);
       
-      // Create the counter element and style it
       const counter = document.createElement("div");
       counter.id = `${id}-counter`;
       counter.style.fontSize = "0.9em";
       counter.style.fontWeight = "600";
       counter.style.color = "#3b8f9a";
-      counter.style.marginBottom = "5px";  // Space between counter and textarea
+      counter.style.marginBottom = "5px";
       counter.textContent = `${limit} characters remaining`;
 
-      // Insert the counter above the textarea
       textArea.parentNode.insertBefore(counter, textArea);
 
-      // Show/hide counter based on the radio button for "Other"
       if (showOnRadio) {
           const radioButton = document.getElementById("comorbidity-other");
 
           radioButton.addEventListener("change", function() {
               if (radioButton.checked) {
-                  counter.style.display = "block";  // Show counter when radio is checked
+                  counter.style.display = "block";
               } else {
-                  counter.style.display = "none";  // Hide counter when radio is unchecked
+                  counter.style.display = "none";
               }
           });
 
-          // Initially check the radio button state and set visibility
           if (radioButton.checked) {
               counter.style.display = "block";
           } else {
@@ -394,19 +390,18 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       }
 
-      // Add event listener to update counter on input
       textArea.addEventListener("input", function() {
           const remaining = limit - textArea.value.length;
 
           if (remaining < 0) {
-              textArea.value = textArea.value.slice(0, limit); // Ensure no more than the limit
+              textArea.value = textArea.value.slice(0, limit);
               counter.textContent = "0 characters remaining";
               counter.style.color = "red";
           } else {
               counter.textContent = `${remaining} characters remaining`;
-              counter.style.color = "#3b8f9a";  // Default color
+              counter.style.color = "#3b8f9a";
               if (remaining <= 5) {
-                counter.style.color = "red";  // Highlight in red when characters are near limit
+                counter.style.color = "red";
               }
           }
       });
