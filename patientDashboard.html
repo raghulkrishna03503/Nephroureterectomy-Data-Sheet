@@ -248,8 +248,15 @@
                                 <option value="1">No</option>
                                 <option value="2">Yes</option>
                             </select>
+                            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 8px;">
+                                <input type="radio" name="comorbidities" value="other" id="comorbidity-other" class="changeColor">&nbsp;&nbsp;
+                                <label for="comorbidity-other" style="font-weight: 450; margin-right: 8px; margin-top: 7.5px;">Other</label>
+                            </div>
+                            <textarea id="other-comorbidity" class="form-control mt-2" placeholder="If others, please specify" style="display: none;"></textarea>
+                            <hr><label for="comment-comorbidity">Comments on Comorbidities</label>
+                            <textarea id="comment-comorbidity" class="form-control mt-2" placeholder="Additional Comments"></textarea>
                         </td>
-                    </tr>
+                    </tr>                                                     
                     <tr>
                         <td><label for="diagnosis">Diagnosis</label></td>
                         <td>
@@ -307,6 +314,8 @@
                                 <option value="1">No</option>
                                 <option value="2">Yes</option>
                             </select>
+                            <hr><label for="comment-cect">Impressions of Test</label>
+                            <textarea id="comment-cect" class="form-control mt-2" placeholder="Impressions of Test"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -316,6 +325,8 @@
                                 <option value="1">No</option>
                                 <option value="2">Yes</option>
                             </select>
+                            <hr><label for="comment-mri">Impressions of Test</label>
+                            <textarea id="comment-mri" class="form-control mt-2" placeholder="Impressions of Test"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -635,14 +646,14 @@
                             }
 
                             .table-bordered {
-                                border-spacing: 10px; /* Adds space around the cells */
-                                width: 100%; /* Full width for the table */
+                                border-spacing: 10px;
+                                width: 100%;
                             }
                         
                             .table-bordered td {
-                                padding: 15px; /* Adds padding around each cell */
-                                vertical-align: middle; /* Centers vertically within each cell */
-                                text-align: center; /* Centers content horizontally */
+                                padding: 15px;
+                                vertical-align: middle;
+                                text-align: center;
                             }
                         
                             .center-input {
@@ -653,8 +664,8 @@
                             }
                         
                             .form-control, .center-input label {
-                                margin: 0; /* Removes extra margin */
-                                text-align: center; /* Centers text in inputs */
+                                margin: 0;
+                                text-align: center;
                             }
                         </style>
                         

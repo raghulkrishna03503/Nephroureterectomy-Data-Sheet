@@ -127,6 +127,8 @@ function submitPatientData(event) {
     smoking: document.getElementById("smoking").value,
     alcohol: document.getElementById("alcohol").value,
     comorbidities: document.getElementById("comorbidities").value,
+    otherComorbidities : document.getElementById("other-comorbidity").value,
+    commentComorbidities : document.getElementById("comment-comorbidity").value,
     diagnosis: document.getElementById("diagnosis").value,
     presentingSymptoms: document.getElementById("presentingSymptoms").value,
     hematuria: document.getElementById("hematuria").value,
@@ -134,7 +136,9 @@ function submitPatientData(event) {
     prevTreatment: document.getElementById("prevTreatment").value,
     cytology: document.getElementById("cytology").value,
     cect: document.getElementById("cect").value,
+    commentCect: document.getElementById("comment-cect").value,
     mri: document.getElementById("mri").value,
+    commentMri: document.getElementById("comment-mri").value,
     pet: document.getElementById("pet").value,
     bladderCuff: document.getElementById("bladderCuff").value,
     tumorSize: document.getElementById("tumorSize").value,
@@ -329,6 +333,85 @@ function calceGFR() {
     );
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const comorbidityRadios = document.getElementsByName('comorbidities');
+  const otherComorbidityField = document.getElementById('other-comorbidity');
+
+  comorbidityRadios.forEach(radio => {
+      radio.addEventListener('change', function () {
+          if (radio.checked) {
+              otherComorbidityField.style.display = 'block';
+              otherComorbidityField.required = true;
+          } else {
+              otherComorbidityField.style.display = 'none';
+              otherComorbidityField.required = false;
+          }
+      });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const textAreas = [
+      { id: "comment-mri", limit: 1200 },
+      { id: "comment-cect", limit: 1200 },
+      { id: "other-comorbidity", limit: 1200, showOnRadio: true },
+      { id: "comment-comorbidity", limit: 1200 }
+  ];
+
+  textAreas.forEach(({ id, limit, showOnRadio }) => {
+      const textArea = document.getElementById(id);
+      
+      // Create the counter element and style it
+      const counter = document.createElement("div");
+      counter.id = `${id}-counter`;
+      counter.style.fontSize = "0.9em";
+      counter.style.fontWeight = "600";
+      counter.style.color = "#3b8f9a";
+      counter.style.marginBottom = "5px";  // Space between counter and textarea
+      counter.textContent = `${limit} characters remaining`;
+
+      // Insert the counter above the textarea
+      textArea.parentNode.insertBefore(counter, textArea);
+
+      // Show/hide counter based on the radio button for "Other"
+      if (showOnRadio) {
+          const radioButton = document.getElementById("comorbidity-other");
+
+          radioButton.addEventListener("change", function() {
+              if (radioButton.checked) {
+                  counter.style.display = "block";  // Show counter when radio is checked
+              } else {
+                  counter.style.display = "none";  // Hide counter when radio is unchecked
+              }
+          });
+
+          // Initially check the radio button state and set visibility
+          if (radioButton.checked) {
+              counter.style.display = "block";
+          } else {
+              counter.style.display = "none";
+          }
+      }
+
+      // Add event listener to update counter on input
+      textArea.addEventListener("input", function() {
+          const remaining = limit - textArea.value.length;
+
+          if (remaining < 0) {
+              textArea.value = textArea.value.slice(0, limit); // Ensure no more than the limit
+              counter.textContent = "0 characters remaining";
+              counter.style.color = "red";
+          } else {
+              counter.textContent = `${remaining} characters remaining`;
+              counter.style.color = "#3b8f9a";  // Default color
+              if (remaining <= 5) {
+                counter.style.color = "red";  // Highlight in red when characters are near limit
+              }
+          }
+      });
+  });
+});
 
 auth.onAuthStateChanged(user => {
   if (user) {
