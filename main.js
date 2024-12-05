@@ -122,7 +122,6 @@ function submitPatientData(event) {
           }
       }
   });
-  console.log(selectedValues.join('-'));
   const patientData = {
     participantInitial: document.getElementById("participantInitial").value,
     yearOfBirth: Number(document.getElementById("year").value),
@@ -143,6 +142,7 @@ function submitPatientData(event) {
     hematuria: document.getElementById("hematuria").value,
     luts: document.getElementById("luts").value,
     prevTreatment: document.getElementById("prevTreatment").value,
+    impressionsPrevTreatment: document.getElementById("impressions-prevTreatment").value,
     cytology: document.getElementById("cytology").value,
     cect: document.getElementById("cect").value,
     commentCect: document.getElementById("comment-cect").value,
@@ -421,6 +421,17 @@ allCheckboxes.forEach(checkbox => {
         }
       }
     });
+});
+
+document.getElementById("prevTreatment").addEventListener("change", function() {
+  const textarea = document.getElementById("impressions-prevTreatment");
+  if (this.value === "Yes") {
+      textarea.style.display = "block";
+      textarea.required = true;
+  } else {
+      textarea.style.display = "none";
+      textarea.value = "";
+  }
 });
 
 auth.onAuthStateChanged(user => {
