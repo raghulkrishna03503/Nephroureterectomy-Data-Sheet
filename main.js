@@ -111,7 +111,18 @@ function submitPatientData(event) {
   else if (adj3){
     adjVol = "No";
   }
-
+  const checkboxes = document.querySelectorAll('.comorbidity-checkbox');
+  let selectedValues = [];
+  checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+          if (checkbox.value === 'Others' && otherComorbidityTextarea.value.trim() !== '') {
+              selectedValues.push(`${otherComorbidityTextarea.value.trim()}`);
+          } else if (checkbox.value !== 'Others') {
+              selectedValues.push(checkbox.value);
+          }
+      }
+  });
+  console.log(selectedValues.join('-'));
   const patientData = {
     participantInitial: document.getElementById("participantInitial").value,
     yearOfBirth: Number(document.getElementById("year").value),
@@ -126,9 +137,7 @@ function submitPatientData(event) {
     bmi: document.getElementById("bmi").value,
     smoking: document.getElementById("smoking").value,
     alcohol: document.getElementById("alcohol").value,
-    comorbidities: document.getElementById("comorbidities").value,
-    otherComorbidities : document.getElementById("other-comorbidity").value,
-    commentComorbidities : document.getElementById("comment-comorbidity").value,
+    comorbidities: selectedValues.join(','),
     diagnosis: document.getElementById("diagnosis").value,
     presentingSymptoms: document.getElementById("presentingSymptoms").value,
     hematuria: document.getElementById("hematuria").value,
@@ -375,78 +384,43 @@ function calcBMI() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const comorbidityRadios = document.getElementsByName('comorbidities');
-  const otherComorbidityField = document.getElementById('other-comorbidity');
+const otherComorbidityTextarea = document.getElementById('other-comorbidity');
+const others = document.getElementById('others');
+const allCheckboxes = document.querySelectorAll('.comorbidity-checkbox');
 
-  comorbidityRadios.forEach(radio => {
-      radio.addEventListener('change', function () {
-          if (radio.checked) {
-              otherComorbidityField.style.display = 'block';
-              otherComorbidityField.required = true;
-          } else {
-              otherComorbidityField.style.display = 'none';
-              otherComorbidityField.required = false;
-          }
-      });
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-  const textAreas = [
-      { id: "comment-mri", limit: 1200 },
-      { id: "comment-cect", limit: 1200 },
-      { id: "other-comorbidity", limit: 1200, showOnRadio: true },
-      { id: "comment-comorbidity", limit: 1200 }
-  ];
-
-  textAreas.forEach(({ id, limit, showOnRadio }) => {
-      const textArea = document.getElementById(id);
+allCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+      if (this.value === 'Others' && this.checked){
+        otherComorbidityTextarea.style.display = 'block';
+        otherComorbidityTextarea.required = true;
+      }
       
-      const counter = document.createElement("div");
-      counter.id = `${id}-counter`;
-      counter.style.fontSize = "0.9em";
-      counter.style.fontWeight = "600";
-      counter.style.color = "#3b8f9a";
-      counter.style.marginBottom = "5px";
-      counter.textContent = `${limit} characters remaining`;
-
-      textArea.parentNode.insertBefore(counter, textArea);
-
-      if (showOnRadio) {
-          const radioButton = document.getElementById("comorbidity-other");
-
-          radioButton.addEventListener("change", function() {
-              if (radioButton.checked) {
-                  counter.style.display = "block";
-              } else {
-                  counter.style.display = "none";
-              }
-          });
-
-          if (radioButton.checked) {
-              counter.style.display = "block";
-          } else {
-              counter.style.display = "none";
-          }
+      if (this.value === 'Others' && !this.checked){
+        otherComorbidityTextarea.style.display = 'none';
+        otherComorbidityTextarea.value = '';
+        otherComorbidityTextarea.required = false;
       }
 
-      textArea.addEventListener("input", function() {
-          const remaining = limit - textArea.value.length;
-
-          if (remaining < 0) {
-              textArea.value = textArea.value.slice(0, limit);
-              counter.textContent = "0 characters remaining";
-              counter.style.color = "red";
-          } else {
-              counter.textContent = `${remaining} characters remaining`;
-              counter.style.color = "#3b8f9a";
-              if (remaining <= 5) {
-                counter.style.color = "red";
-              }
+      if (this.value === 'None' && this.checked) {
+        allCheckboxes.forEach(cb => {
+          if (cb !== this) cb.checked = false;
+          if (!others.checked){
+            otherComorbidityTextarea.style.display = 'none';
+            otherComorbidityTextarea.value = '';
+            otherComorbidityTextarea.required = false;
           }
-      });
-  });
+        });
+      }
+     if (this.value !== 'None') {
+        const noneCheckbox = document.querySelector('input[value="None"]');
+        if (noneCheckbox) noneCheckbox.checked = false;
+        if (!others.checked){
+          otherComorbidityTextarea.style.display = 'none';
+          otherComorbidityTextarea.value = '';
+          otherComorbidityTextarea.required = false;
+        }
+      }
+    });
 });
 
 auth.onAuthStateChanged(user => {

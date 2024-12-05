@@ -295,8 +295,8 @@
                         <td><label for="smoking">Smoking</label></td>
                         <td>
                             <select id="smoking" class="form-control select-dropdown" required>
-                                <option value="1">No</option>
-                                <option value="2">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </td>
                     </tr>
@@ -304,12 +304,48 @@
                         <td><label for="alcohol">Alcohol</label></td>
                         <td>
                             <select id="alcohol" class="form-control select-dropdown" required>
-                                <option value="1">No</option>
-                                <option value="2">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
+                        <td><label for="comorbidities">Comorbidities</label></td>
+                        <td>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="comorbidities" value="None" class="comorbidity-checkbox"> None
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="comorbidities" value="Diabetes Mellitus" class="comorbidity-checkbox"> Diabetes Mellitus
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="comorbidities" value="Hypertension" class="comorbidity-checkbox"> Hypertension
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="comorbidities" value="Coronary Artery Disease" class="comorbidity-checkbox"> Coronary Artery Disease
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="comorbidities" value="Asthma" class="comorbidity-checkbox"> Asthma
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="comorbidities" value="Others" class="comorbidity-checkbox" id="others"> Others
+                                </label>
+                            </div>
+                            <textarea id="other-comorbidity" class="form-control mt-2" placeholder="If others, please specify and separate by commas" style="display: none;"></textarea>
+                        </td>
+                    </tr>                    
+                    <!-- <tr>
                         <td><label for="comorbidities">Comorbidities</label></td>
                         <td>
                             <select id="comorbidities" class="form-control select-dropdown" required>
@@ -324,7 +360,7 @@
                             <hr><label for="comment-comorbidity">Comments on Comorbidities</label>
                             <textarea id="comment-comorbidity" class="form-control mt-2" placeholder="Additional Comments"></textarea>
                         </td>
-                    </tr>                                                     
+                    </tr>                                                      -->
                     <tr>
                         <td><label for="diagnosis">Diagnosis</label></td>
                         <td>
