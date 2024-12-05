@@ -121,8 +121,8 @@ function submitPatientData(event) {
     patientResidingState: document.getElementById("patientResidingState").value,
     age: Number(document.getElementById("age").value),
     gender: document.getElementById("gender").value,
-    ht: document.getElementById("ht").value,
-    wt: document.getElementById("wt").value,
+    height: document.getElementById("height").value,
+    weight: document.getElementById("weight").value,
     bmi: document.getElementById("bmi").value,
     smoking: document.getElementById("smoking").value,
     alcohol: document.getElementById("alcohol").value,
@@ -232,6 +232,9 @@ function searchPatientByParticipantStudyNo(participantStudyNo) {
             <td>${patient.patientResidingState || ""}</td>
             <td>${patient.age || ""}</td>
             <td>${patient.gender || ""}</td>
+            <td>${patient.height || ""}</td>
+            <td>${patient.weight || ""}</td>
+            <td>${patient.bmi || ""}</td>
             <td>${patient.diagnosis || ""}</td>
             <td>${patient.tumorSize || ""}</td>
             <td>${patient.procedurePerformed || ""}</td>
@@ -261,8 +264,11 @@ function downloadExcel() {
           "Participant's Initial": patient.participantInitial || "",
           "Year of Birth": patient.year || "",
           "Patient's Residing State": patient.patientResidingState || "",
-          "Age": patient.age || "",
+          "Age (in yrs)": patient.age || "",
           "Gender": patient.gender || "",
+          "Height (in cms)": patient.height || "",
+          "Weight (in kgs)": patient.weight || "",
+          "BMI (in kg/m2)": patient.bmi || "",
           "Diagnosis": patient.diagnosis || "",
           "Tumor Size (cm)": patient.tumorSize || "",
           "Procedure Performed": patient.procedurePerformed || "",
@@ -334,6 +340,38 @@ function calceGFR() {
       Math.pow(Math.max(cys / 0.8, 1), -1.328) *
       Math.pow(0.996, age) * 0.932
     );
+  }
+}
+
+function calcAge() {
+  const yearOfBirth = parseInt(document.getElementById('year').value);
+  const ageField = document.getElementById('age');
+  
+  if (!isNaN(yearOfBirth) && yearOfBirth > 0) {
+      const currentYear = new Date().getFullYear();
+      const age = currentYear - yearOfBirth;
+
+      if (age >= 0) {
+          ageField.value = age;
+      } else {
+          ageField.value = "";
+          alert("Year of birth cannot be in the future!");
+      }
+  } else {
+      ageField.value = "";
+  }
+}
+
+function calcBMI() {
+  const height = parseFloat(document.getElementById('height').value);
+  const weight = parseFloat(document.getElementById('weight').value);
+  const bmiField = document.getElementById('bmi');
+  
+  if (height > 0 && weight > 0) {
+      const bmi = weight / ((height / 100) ** 2);
+      bmiField.value = bmi.toFixed(1);
+  } else {
+      bmiField.value = "";
   }
 }
 
