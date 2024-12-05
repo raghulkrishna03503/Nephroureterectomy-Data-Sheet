@@ -298,7 +298,7 @@ function calceGFR() {
     scr *= 0.0113;
   }
 
-  if (gender === "M") {
+  if (gender === "Male") {
     ckdepic.value = Math.round(
       142 * Math.pow(Math.min(scr / 0.9, 1), -0.302) *
       Math.pow(Math.max(scr / 0.9, 1), -1.200) *
