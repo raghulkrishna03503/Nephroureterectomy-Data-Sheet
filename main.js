@@ -144,6 +144,7 @@ function submitPatientData(event) {
     prevTreatment: document.getElementById("prevTreatment").value,
     impressionsPrevTreatment: document.getElementById("impressions-prevTreatment").value,
     cytology: document.getElementById("cytology").value,
+    cytologyVal: document.getElementById("cytology-values").value,
     cect: document.getElementById("cect").value,
     commentCect: document.getElementById("comment-cect").value,
     mri: document.getElementById("mri").value,
@@ -431,6 +432,20 @@ document.getElementById("prevTreatment").addEventListener("change", function() {
   } else {
       textarea.style.display = "none";
       textarea.value = "";
+      textarea.required = false;
+  }
+});
+
+document.getElementById("cytology").addEventListener("change", function() {
+  const val = document.getElementById("cytology-values");
+  if (this.value === "Positive") {
+      val.style.display = "block";
+      val.value = "HG";
+      val.required = true;
+  } else {
+      val.style.display = "none";
+      val.value = "";
+      val.required = false;
   }
 });
 

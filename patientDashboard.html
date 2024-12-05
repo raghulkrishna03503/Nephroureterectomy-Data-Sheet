@@ -406,9 +406,13 @@
                         <td><label for="cytology">Cytology</label></td>
                         <td>
                             <select id="cytology" class="form-control select-dropdown" required>
-                                <option value="1">HG</option>
-                                <option value="2">LG</option>
-                                <option value="3">NA</option>
+                                <option value="Negative">Negative</option>
+                                <option value="Positive">Positive</option>
+                                <select id="cytology-values" class="form-control select-dropdown" required style="display: none;">
+                                    <option value="HG">HG</option>
+                                    <option value="LG">LG</option>
+                                    <option value="Not Applicable">Not Applicable</option>
+                                </select>
                             </select>
                         </td>
                     </tr>
