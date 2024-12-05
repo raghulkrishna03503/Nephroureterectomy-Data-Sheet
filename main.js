@@ -146,43 +146,45 @@ function submitPatientData(event) {
     cytology: document.getElementById("cytology").value,
     cytologyVal: document.getElementById("cytology-values").value,
     cect: document.getElementById("cect").value,
-    commentCect: document.getElementById("comment-cect").value,
+    impressionsCect: document.getElementById("impressions-cect").value,
     mri: document.getElementById("mri").value,
-    commentMri: document.getElementById("comment-mri").value,
+    impressionsMri: document.getElementById("impressions-mri").value,
     pet: document.getElementById("pet").value,
+    impressionsPet: document.getElementById("impressions-pet").value,
     bladderCuff: document.getElementById("bladderCuff").value,
-    tumorSize: document.getElementById("tumorSize").value,
+    tumorSize: Number(document.getElementById("tumorSize").value),
     tumorLocation: document.getElementById("tumorLocation").value,
     preOpBiopsy: document.getElementById("preOpBiopsy").value,
-    preOpCr: document.getElementById("preOpCr").value,
-    preOpEgfr: document.getElementById("preOpEGFR").value,
+    impressionsPreOpBiopsy: document.getElementById("impressions-preOpBiopsy").value,
+    preOpCr: Number(document.getElementById("preOpCr").value),
+    preOpEgfr: Number(document.getElementById("preOpEGFR").value),
     lowerTractStatus: document.getElementById("lowerTractStatus").value,
     asa: document.getElementById("asa").value,
     bladderTumour: document.getElementById("bladderTumour").value,
     neoAdjuvantTherapy: document.getElementById("neoAdjuvantTherapy").value,
     chemotherapyRegimen: document.getElementById("chemoRegimen").value,
-    noOfNacCycles: document.getElementById("noOfNacCycles").value,
+    noOfNacCycles: Number(document.getElementById("noOfNacCycles").value),
     approach: document.getElementById("approach").value,
     procedurePerformed: document.getElementById("procedurePerformed").value,
     doP: document.getElementById("dop").value,
-    opTime: document.getElementById("opTime").value,
+    opTime: Number(document.getElementById("opTime").value),
     postOpMitomycin: document.getElementById("postOpMitomycin").value,
-    los: document.getElementById("los").value,
-    bloodLoss: document.getElementById("bloodLoss").value,
+    los: Number(document.getElementById("los").value),
+    bloodLoss: Number(document.getElementById("bloodLoss").value),
     intraopComp: document.getElementById("intraopComp").value,
     bloodTransfusion: document.getElementById("bloodTransfusion").value,
-    normDiet: document.getElementById("normDiet").value,
-    ambulation: document.getElementById("ambulation").value,
-    fitForDisch: document.getElementById("fitForDisch").value,
+    normDiet: Number(document.getElementById("normDiet").value),
+    ambulation: Number(document.getElementById("ambulation").value),
+    fitForDisch: Number(document.getElementById("fitForDisch").value),
     postOpComp: document.getElementById("postOpComp").value,
-    postOpCr: document.getElementById("postOpCr").value,
+    postOpCr: Number(document.getElementById("postOpCr").value),
     hpr: document.getElementById("hpr").value,
     stage: document.getElementById("stage").value,
     adjuvantChemo: document.getElementById("adjuvantChemo").value,
-    noOfAdjChemoCycles: document.getElementById("noOfAdjChemoCycles").value,
+    noOfAdjChemoCycles: Number(document.getElementById("noOfAdjChemoCycles").value),
     followupCysto: document.getElementById("followupCysto").value,
     cystoscopyFindings: document.getElementById("cystoscopyFindings").value,
-    threeMonthCreatinine: document.getElementById("threeMonthCreatinine").value,
+    threeMonthCreatinine: Number(document.getElementById("threeMonthCreatinine").value),
     threeMonthEgfr: document.getElementById("threeMonthEgfr").value,
     threeMonthCt: document.getElementById("threeMonthCt").value,
     sixMonthCreatinine: document.getElementById("sixMonthCreatinine").value,
@@ -446,6 +448,54 @@ document.getElementById("cytology").addEventListener("change", function() {
       val.style.display = "none";
       val.value = "";
       val.required = false;
+  }
+});
+
+document.getElementById("cect").addEventListener("change", function() {
+  const textarea = document.getElementById("impressions-cect");
+  if (this.value === "Yes") {
+      textarea.style.display = "block";
+      textarea.required = true;
+  } else {
+      textarea.style.display = "none";
+      textarea.value = "";
+      textarea.required = false;
+  }
+});
+
+document.getElementById("mri").addEventListener("change", function() {
+  const textarea = document.getElementById("impressions-mri");
+  if (this.value === "Yes") {
+      textarea.style.display = "block";
+      textarea.required = true;
+  } else {
+      textarea.style.display = "none";
+      textarea.value = "";
+      textarea.required = false;
+  }
+});
+
+document.getElementById("pet").addEventListener("change", function() {
+  const textarea = document.getElementById("impressions-pet");
+  if (this.value === "Yes") {
+      textarea.style.display = "block";
+      textarea.required = true;
+  } else {
+      textarea.style.display = "none";
+      textarea.value = "";
+      textarea.required = false;
+  }
+});
+
+document.getElementById("preOpBiopsy").addEventListener("change", function() {
+  const textarea = document.getElementById("impressions-preOpBiopsy");
+  if (this.value === "Yes") {
+      textarea.style.display = "block";
+      textarea.required = true;
+  } else {
+      textarea.style.display = "none";
+      textarea.value = "";
+      textarea.required = false;
   }
 });
 

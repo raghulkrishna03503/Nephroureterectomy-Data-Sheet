@@ -408,7 +408,7 @@
                             <select id="cytology" class="form-control select-dropdown" required>
                                 <option value="Negative">Negative</option>
                                 <option value="Positive">Positive</option>
-                                <select id="cytology-values" class="form-control select-dropdown" required style="display: none;">
+                                <select id="cytology-values" class="form-control select-dropdown" style="display: none;">
                                     <option value="HG">HG</option>
                                     <option value="LG">LG</option>
                                     <option value="Not Applicable">Not Applicable</option>
@@ -420,54 +420,53 @@
                         <td><label for="cect">CECT</label></td>
                         <td>
                             <select id="cect" class="form-control select-dropdown" required>
-                                <option value="1">No</option>
-                                <option value="2">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
-                            <hr><label for="comment-cect">Impressions of Test</label>
-                            <textarea id="comment-cect" class="form-control mt-2" placeholder="Impressions of Test"></textarea>
+                            <textarea id="impressions-cect" class="form-control mt-2" placeholder="Write your Impressions here" style="display: none;"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="mri">MRI</label></td>
                         <td>
                             <select id="mri" class="form-control select-dropdown" required>
-                                <option value="1">No</option>
-                                <option value="2">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
-                            <hr><label for="comment-mri">Impressions of Test</label>
-                            <textarea id="comment-mri" class="form-control mt-2" placeholder="Impressions of Test"></textarea>
+                            <textarea id="impressions-mri" class="form-control mt-2" placeholder="Write your Impressions here" style="display: none;"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="pet">PET</label></td>
                         <td>
                             <select id="pet" class="form-control select-dropdown" required>
-                                <option value="1">No</option>
-                                <option value="2">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
+                            <textarea id="impressions-pet" class="form-control mt-2" placeholder="Write your Impressions here" style="display: none;"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="bladderCuff">Bladder Cuff</label></td>
                         <td>
                             <select id="bladderCuff" class="form-control select-dropdown" required>
-                                <option value="1">Open</option>
-                                <option value="2">Lap</option>
-                                <option value="3">Robotic</option>
+                                <option value="Open">Open</option>
+                                <option value="Lap">Lap</option>
+                                <option value="Robotic">Robotic</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="tumorSize">Tumor Size (in cm)</label></td>
-                        <td><input type="number" step="0.1" id="tumorSize" class="form-control" required></td>
+                        <td><label for="tumorSize">Tumor Size (in cms)</label></td>
+                        <td><input type="text" id="tumorSize" class="form-control" required></td>
                     </tr>
                     <tr>
                         <td><label for="tumorLocation">Tumor Location</label></td>
                         <td>
                             <select id="tumorLocation" class="form-control select-dropdown" required>
-                                <option value="1">Right</option>
-                                <option value="2">Left</option>
-                                <option value="3">Bilateral</option>
+                                <option value="Right">Right</option>
+                                <option value="Left">Left</option>
+                                <option value="Bilateral">Bilateral</option>
                             </select>
                         </td>
                     </tr>
@@ -475,25 +474,26 @@
                         <td><label for="preOpBiopsy">Pre-op Biopsy</label></td>
                         <td>
                             <select id="preOpBiopsy" class="form-control select-dropdown" required>
-                                <option value="1">No</option>
-                                <option value="2">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
+                            <textarea id="impressions-preOpBiopsy" class="form-control mt-2" placeholder="Write your Impressions here" style="display: none;"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="preOpCr">Pre-op Cr</label></td>
-                        <td><input type="number" step="0.1" id="preOpCr" class="form-control" required></td>
+                        <td><input type="text" id="preOpCr" class="form-control" required></td>
                     </tr>
                     <tr>
                         <td><label for="preOpEGFR">Pre-op e-GFR</label></td>
-                        <td><input type="number" step="0.1" id="preOpEGFR" class="form-control" required></td>
+                        <td><input type="text" id="preOpEGFR" class="form-control" required></td>
                     </tr>
                     <tr>
                         <td><label for="lowerTractStatus">Lower Tract Status</label></td>
                         <td>
                             <select id="lowerTractStatus" class="form-control select-dropdown" required>
-                                <option value="1">No</option>
-                                <option value="2">Tumour</option>
+                                <option value="No">No</option>
+                                <option value="Tumour">Tumour</option>
                             </select>
                         </td>
                     </tr>
@@ -512,8 +512,8 @@
                       <td><label for="bladderTumour">Bladder Tumour</label></td>
                       <td>
                           <select id="bladderTumour" class="form-control select-dropdown" required>
-                              <option value="1">NMIBC</option>
-                              <option value="2">MIBC</option>
+                              <option value="NMIBC">NMIBC</option>
+                              <option value="MIBC">MIBC</option>
                           </select>
                       </td>
                   </tr>
@@ -521,8 +521,8 @@
                       <td><label for="neoAdjuvantTherapy">Neo Adjuvant Therapy Chemo</label></td>
                       <td>
                           <select id="neoAdjuvantTherapy" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
@@ -530,22 +530,22 @@
                       <td><label for="chemoRegimen">Chemotherapy Regimen</label></td>
                       <td>
                           <select id="chemoRegimen" class="form-control select-dropdown" required>
-                              <option value="1">GemCis</option>
-                              <option value="2">GemCar</option>
+                              <option value="GemCis">GemCis</option>
+                              <option value="GemCar">GemCar</option>
                           </select>
                       </td>
                   </tr>
                   <tr>
                       <td><label for="noOfNacCycles">No of NAC Cycles</label></td>
-                      <td><input type="number" id="noOfNacCycles" class="form-control" required></td>
+                      <td><input type="text" id="noOfNacCycles" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="approach">Approach</label></td>
                       <td>
                           <select id="approach" class="form-control select-dropdown" required>
-                              <option value="1">Open</option>
-                              <option value="2">Lap</option>
-                              <option value="3">RA</option>
+                              <option value="Open">Open</option>
+                              <option value="Lap">Lap</option>
+                              <option value="RA">RA</option>
                           </select>
                       </td>
                   </tr>
@@ -559,31 +559,31 @@
                   </tr>
                   <tr>
                       <td><label for="opTime">Op Time (in mins)</label></td>
-                      <td><input type="number" id="opTime" class="form-control" required></td>
+                      <td><input type="text" id="opTime" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="postOpMitomycin">Post Op Mitomycin</label></td>
                       <td>
                           <select id="postOpMitomycin" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
                   <tr>
                       <td><label for="los">LOS</label></td>
-                      <td><input type="number" id="los" class="form-control" required></td>
+                      <td><input type="text" id="los" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="bloodLoss">Blood Loss (in ml)</label></td>
-                      <td><input type="number" id="bloodLoss" class="form-control" required></td>
+                      <td><input type="text" id="bloodLoss" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="intraopComp">Intraop Complications</label></td>
                       <td>
                           <select id="intraopComp" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
@@ -591,35 +591,35 @@
                       <td><label for="bloodTransfusion">Blood Transfusion</label></td>
                       <td>
                           <select id="bloodTransfusion" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
                   <tr>
                       <td><label for="normDiet">Norm Diet (POD)</label></td>
-                      <td><input type="number" id="normDiet" class="form-control" required></td>
+                      <td><input type="text" id="normDiet" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="ambulation">Ambulation (POD)</label></td>
-                      <td><input type="number" id="ambulation" class="form-control" required></td>
+                      <td><input type="text" id="ambulation" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="fitForDisch">Fit for Discharge (POD)</label></td>
-                      <td><input type="number" id="fitForDisch" class="form-control" required></td>
+                      <td><input type="text" id="fitForDisch" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="postOpComp">Post Op Complications</label></td>
                       <td>
                           <select id="postOpComp" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
                   <tr>
                       <td><label for="postOpCr">Post Op Cr</label></td>
-                      <td><input type="number" step="0.1" id="postOpCr" class="form-control" required></td>
+                      <td><input type="text" id="postOpCr" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="hpr">HPR</label></td>
@@ -633,21 +633,21 @@
                       <td><label for="adjuvantChemo">Adjuvant Chemo</label></td>
                       <td>
                           <select id="adjuvantChemo" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
                   <tr>
                       <td><label for="noOfAdjChemoCycles">No of Adjuvant Chemo Cycles</label></td>
-                      <td><input type="number" id="noOfAdjChemoCycles" class="form-control" required></td>
+                      <td><input type="text" id="noOfAdjChemoCycles" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="chemoRegimenAdj">Adjuvant Chemo Regimen</label></td>
                       <td>
                           <select id="chemoRegimenAdj" class="form-control select-dropdown" required>
-                              <option value="1">GemCis</option>
-                              <option value="2">GemCar</option>
+                              <option value="GemCis">GemCis</option>
+                              <option value="GemCar">GemCar</option>
                           </select>
                       </td>
                   </tr>
@@ -655,27 +655,24 @@
                       <td><label for="followupCysto">Followup Cysto</label></td>
                       <td>
                           <select id="followupCysto" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
                   <tr>
                       <td><label for="cystoscopyFindings">Cystoscopy Findings</label></td>
                       <td>
-                          <select id="cystoscopyFindings" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Tumour</option>
-                          </select>
+                        <textarea id="cystoscopyFindings" class="form-control mt-2" placeholder="Write your Findings here" required></textarea>
                       </td>
                   </tr>
                   <tr>
                       <td><label for="threeMonthCreatinine">3 Month Creatinine</label></td>
-                      <td><input type="number" step="0.1" id="threeMonthCreatinine" class="form-control" required></td>
+                      <td><input type="text" id="threeMonthCreatinine" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="threeMonthEgfr">3 Month e-GFR</label></td>
-                      <td><input type="number" step="0.1" id="threeMonthEgfr" class="form-control" required></td>
+                      <td><input type="text" id="threeMonthEgfr" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="threeMonthCt">3 Month CT</label></td>
@@ -683,11 +680,11 @@
                   </tr>
                   <tr>
                       <td><label for="sixMonthCreatinine">6 Month Creatinine</label></td>
-                      <td><input type="number" step="0.1" id="sixMonthCreatinine" class="form-control" required></td>
+                      <td><input type="text" id="sixMonthCreatinine" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="sixMonthEgfr">6 Month e-GFR</label></td>
-                      <td><input type="number" step="0.1" id="sixMonthEgfr" class="form-control" required></td>
+                      <td><input type="text" id="sixMonthEgfr" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="sixMonthCt">6 Month CT</label></td>
@@ -695,11 +692,11 @@
                   </tr>
                   <tr>
                       <td><label for="twelveMonthCreatinine">12 Month Creatinine</label></td>
-                      <td><input type="number" step="0.1" id="twelveMonthCreatinine" class="form-control" required></td>
+                      <td><input type="text" id="twelveMonthCreatinine" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="twelveMonthEgfr">12 Month e-GFR</label></td>
-                      <td><input type="number" step="0.1" id="twelveMonthEgfr" class="form-control" required></td>
+                      <td><input type="text" id="twelveMonthEgfr" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="twelveMonthCt">12 Month CT</label></td>
@@ -707,11 +704,11 @@
                   </tr>
                   <tr>
                       <td><label for="twentyFourMonthCreatinine">24 Month Creatinine</label></td>
-                      <td><input type="number" step="0.1" id="twentyFourMonthCreatinine" class="form-control" required></td>
+                      <td><input type="text" id="twentyFourMonthCreatinine" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="twentyFourMonthEgfr">24 Month e-GFR</label></td>
-                      <td><input type="number" step="0.1" id="twentyFourMonthEgfr" class="form-control" required></td>
+                      <td><input type="text" id="twentyFourMonthEgfr" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="twentyFourMonthCt">24 Month CT</label></td>
@@ -719,11 +716,11 @@
                   </tr>
                   <tr>
                       <td><label for="thirtySixMonthCreatinine">36 Month Creatinine</label></td>
-                      <td><input type="number" step="0.1" id="thirtySixMonthCreatinine" class="form-control" required></td>
+                      <td><input type="text" id="thirtySixMonthCreatinine" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="thirtySixMonthEgfr">36 Month e-GFR</label></td>
-                      <td><input type="number" step="0.1" id="thirtySixMonthEgfr" class="form-control" required></td>
+                      <td><input type="text" id="thirtySixMonthEgfr" class="form-control" required></td>
                   </tr>
                   <tr>
                       <td><label for="thirtySixMonthCt">36 Month CT</label></td>
@@ -737,8 +734,8 @@
                       <td><label for="recurrence">Recurrence</label></td>
                       <td>
                           <select id="recurrence" class="form-control select-dropdown" required>
-                              <option value="1">No</option>
-                              <option value="2">Yes</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
                           </select>
                       </td>
                   </tr>
