@@ -113,14 +113,14 @@ function submitPatientData(event) {
   }
 
   const patientData = {
-    name: document.getElementById("name").value,
-    year: document.getElementById("year").value,
-    uhid: document.getElementById("uhid").value,
-    ipNo: document.getElementById("ipNo").value,
-    telNo: document.getElementById("telNo").value,
-    location: document.getElementById("location").value,
-    age: document.getElementById("age").value,
-    sex: document.getElementById("sex").value,
+    participantInitial: document.getElementById("participantInitial").value,
+    yearOfBirth: Number(document.getElementById("year").value),
+    participantStudyNo: document.getElementById("participantStudyNo").value,
+    // ipNo: document.getElementById("ipNo").value,
+    // telNo: document.getElementById("telNo").value,
+    patientResidingState: document.getElementById("patientResidingState").value,
+    age: Number(document.getElementById("age").value),
+    gender: document.getElementById("gender").value,
     ht: document.getElementById("ht").value,
     wt: document.getElementById("wt").value,
     bmi: document.getElementById("bmi").value,
@@ -210,13 +210,13 @@ function submitPatientData(event) {
     });
 }
 
-function searchPatientByUHID(uhid) {
-  if (!uhid) {
+function searchPatientByParticipantStudyNo(participantStudyNo) {
+  if (!participantStudyNo) {
     document.getElementById("patientData").innerHTML = "";
     return;
   }
 
-  db.collection("patients").where("uhid", "==", uhid).get()
+  db.collection("patients").where("participantStudyNo", "==", participantStudyNo).get()
     .then((querySnapshot) => {
       const tbody = document.getElementById("patientData");
       tbody.innerHTML = "";
@@ -226,11 +226,12 @@ function searchPatientByUHID(uhid) {
           const patient = doc.data();
 
           const row = `<tr>
-            <td>${patient.uhid || ""}</td>
-            <td>${patient.name || ""}</td>
-            <td>${patient.year || ""}</td>
+            <td>${patient.participantStudyNo || ""}</td>
+            <td>${patient.participantInitial || ""}</td>
+            <td>${patient.yearOfBirth || ""}</td>
+            <td>${patient.patientResidingState || ""}</td>
             <td>${patient.age || ""}</td>
-            <td>${patient.sex || ""}</td>
+            <td>${patient.gender || ""}</td>
             <td>${patient.diagnosis || ""}</td>
             <td>${patient.tumorSize || ""}</td>
             <td>${patient.procedurePerformed || ""}</td>
@@ -240,7 +241,7 @@ function searchPatientByUHID(uhid) {
           tbody.innerHTML += row;
         });
       } else {
-        tbody.innerHTML = `<tr><td colspan="8" class="text-center">No patient found with the given UHID</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center">No patient found with the given Participant Study Number</td></tr>`;
       }
     })
     .catch((error) => {
@@ -255,12 +256,14 @@ function downloadExcel() {
       querySnapshot.forEach((doc) => {
         const patient = doc.data();
         const patientData = {
-          UHID: patient.uhid || "",
-          Name: patient.name || "",
-          Year: patient.year || "",
-          Age: patient.age || "",
-          Sex: patient.sex || "",
-          Diagnosis: patient.diagnosis || "",
+          
+          "Participant's Study No.": patient.participantStudyNo || "",
+          "Participant's Initial": patient.participantInitial || "",
+          "Year of Birth": patient.year || "",
+          "Patient's Residing State": patient.patientResidingState || "",
+          "Age": patient.age || "",
+          "Gender": patient.gender || "",
+          "Diagnosis": patient.diagnosis || "",
           "Tumor Size (cm)": patient.tumorSize || "",
           "Procedure Performed": patient.procedurePerformed || "",
         };
@@ -278,7 +281,7 @@ function downloadExcel() {
 
 function calceGFR() {
   let age = parseFloat(document.getElementById("age").value);
-  let sex = document.getElementById("sex").value;
+  let gender = document.getElementById("gender").value;
   let scr = parseFloat(document.getElementById("serumCreatinine").value);
   let cys = parseFloat(document.getElementById("serumCystatinC").value);
   const isUmol = document.getElementById("serumCreatinineUnitMOL").checked;
@@ -286,7 +289,7 @@ function calceGFR() {
   const ckdepicc = document.getElementById("ckdepicc");
   const ckdepicC = document.getElementById("ckdepicC");
 
-  if (!age || !sex || isNaN(scr) || isNaN(cys)) {
+  if (!age || !gender || isNaN(scr) || isNaN(cys)) {
     window.alert("Please provide all the necessary data points!");
     return;
   }
@@ -295,7 +298,7 @@ function calceGFR() {
     scr *= 0.0113;
   }
 
-  if (sex === "M") {
+  if (gender === "M") {
     ckdepic.value = Math.round(
       142 * Math.pow(Math.min(scr / 0.9, 1), -0.302) *
       Math.pow(Math.max(scr / 0.9, 1), -1.200) *

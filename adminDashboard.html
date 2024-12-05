@@ -104,7 +104,7 @@
       margin-bottom: 20px;
     }
 
-    #uhidSearch {
+    #participantStudyNoSearch {
       flex-grow: 1;
       margin-right: 10px;
     }
@@ -120,18 +120,19 @@
   <div class="container">
     
     <div class="search-container">
-      <input type="text" id="uhidSearch" placeholder="Search by UHID" class="form-control" oninput="searchPatientByUHID(this.value)">
+      <input type="text" id="participantStudyNoSearch" placeholder="Search by Participant Study Number" class="form-control" oninput="searchPatientByParticipantStudyNo(this.value)">
       <button class="btn btn-primary" onclick="downloadExcel()">Download Excel Report</button>
     </div>
 
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>UHID</th>
-          <th>Name</th>
-          <th>Year</th>
-          <th>Age</th>
-          <th>Sex</th>
+          <th>Participant's Study No</th>
+          <th>Participant's Initial</th>
+          <th>Year of Birth</th>
+          <th>Patient's Residing State</th>
+          <th>Age (in yrs)</th>
+          <th>Gender</th>
           <th>Diagnosis</th>
           <th>Tumor Size (cm)</th>
           <th>Procedure Performed</th>
